@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "IBI",
+    "IFI",
+    "III"
+  ],
+  "key": {
+    "B": {
+      "item": "minecraft:lapis_block"
+    },
+    "F": {
+      "item": "goblinminers:soul_fragment"
+    },
+    "I": {
+      "item": "minecraft:lapis_lazuli"
+    }
+  },
+  "result": {
+    "item": "goblinminers:lapis_goblin_spawn_egg",
+    "count": 1
+  }
+}

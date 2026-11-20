@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "IBI",
+    "IFI",
+    "III"
+  ],
+  "key": {
+    "B": {
+      "item": "minecraft:copper_block"
+    },
+    "F": {
+      "item": "goblinminers:soul_fragment"
+    },
+    "I": {
+      "item": "minecraft:copper_ingot"
+    }
+  },
+  "result": {
+    "item": "goblinminers:copper_goblin_spawn_egg",
+    "count": 1
+  }
+}

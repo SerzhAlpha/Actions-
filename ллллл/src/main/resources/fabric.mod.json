@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "id": "goblinminers",
+  "version": "1.0.0",
+  "name": "Goblin Miners",
+  "description": "Adds ore-based miner goblins that generate raw ores on a 3x3 platform of their material block.",
+  "authors": ["GoblinMiners"],
+  "license": "MIT",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.example.goblinminers.GoblinMinersMod"
+    ],
+    "client": [
+      "com.example.goblinminers.GoblinMinersClient"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.15.0",
+    "minecraft": "~1.20.1",
+    "java": ">=17",
+    "fabric-api": "*"
+  }
+}
