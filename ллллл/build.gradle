@@ -1,32 +1,46 @@
-name: Build Mod Jar
+plugins {
+    id 'fabric-loom' version '1.6-SNAPSHOT'
+    id 'maven-publish'
+}
 
-on:
-  push:
-    branches: [ "main" ]
-  workflow_dispatch: 
+version = project.mod_version
+group = project.maven_group
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
+base {
+    archivesName = project.archives_base_name
+}
 
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+repositories {
+    mavenCentral()
+}
 
-    - name: Set up JDK 21
-      uses: actions/setup-java@v4
-      with:
-        java-version: '21'
-        distribution: 'temurin'
+dependencies {
+    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    mappings loom.officialMojangMappings()
+    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+}
 
-    - name: Grant execute permission for gradlew
-      run: chmod +x ллллл/gradlew
+processResources {
+    inputs.property "version", project.version
 
-    - name: Build with Gradle
-      run: cd ллллл && ./gradlew build
+    filesMatching("fabric.mod.json") {
+        expand "version": project.version
+    }
+}
 
-    - name: Upload Jar Artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: mod-jar
-        path: ллллл/build/libs/*.jar
+tasks.withType(JavaCompile).configureEach {
+    it.options.release = 21
+}
+
+java {
+    withSourcesJar()
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}
+
+jar {
+    from("LICENSE") {
+        rename { "${it}_${project.base.archivesName.get()}" }
+    }
+}
